@@ -22,8 +22,6 @@ class YoutubeSearchViewController: UIViewController {
     private let numEmptyVideos = 3
     private let numVideos: UInt = 10
     
-    private let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(searchButtonPressed))
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,17 +32,27 @@ class YoutubeSearchViewController: UIViewController {
         searchTableView.dataSource = self
         
         service.apiKey = apiKey
-        
-        view.addGestureRecognizer(hideKeyboardGesture)
+    }
+    
+    func getHideKeyboardGesture() -> UITapGestureRecognizer {
+        return UITapGestureRecognizer(target: self, action: #selector(searchButtonPressed))
+    }
+    
+    func addHideKeyboardGesture() {
+        view.addGestureRecognizer(getHideKeyboardGesture())
+    }
+    
+    func removeHideKeyboardGesture() {
+        view.removeGestureRecognizer(getHideKeyboardGesture())
     }
     
     // Make initial search request with query string from user
     func fetchSearchResource() {
-        startAnimatingEmptyCells()
-        view.removeGestureRecognizer(hideKeyboardGesture)
+        animateCells()
         let query = GTLRYouTubeQuery_SearchList.query(withPart: "snippet")
         query.maxResults = numVideos
-        query.q = searchQueryString.escape()
+        query.order = kGTLRYouTubeOrderRating
+        query.q = searchQueryString
         
         service.executeQuery(query,
                              delegate: self,
@@ -90,10 +98,11 @@ class YoutubeSearchViewController: UIViewController {
         searchTableView.reloadData()
     }
     
-    func startAnimatingEmptyCells() {
-        for index in 0..<numEmptyVideos {
-            if let emptyCell = tableView(searchTableView, cellForRowAt: IndexPath.init(row: index, section: 0)) as? YoutubeSearchResultTableViewCell {
-                emptyCell.startAnimation()
+    func animateCells() {
+        for cell in searchTableView.visibleCells {
+            if let videoCell = cell as? YoutubeSearchResultTableViewCell {
+                videoCell.setEmptyBackground()
+                videoCell.startAnimation()
             }
         }
     }
@@ -149,15 +158,18 @@ extension YoutubeSearchViewController: UITableViewDelegate {
 
 extension YoutubeSearchViewController: UITextFieldDelegate {
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        addHideKeyboardGesture()
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let searchText = textField.text else { return }
         searchQueryString = searchText
+        removeHideKeyboardGesture()
         // Do not want to make an API call if the query string is empty
         if !searchQueryString.isEmpty {
             fetchSearchResource()
         }
-        // TODO-Remove
-        //showAlert(title: "GO TO SEARCH", message: "GO SEARCH FOR \(searchText)")
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

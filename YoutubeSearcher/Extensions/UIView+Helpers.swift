@@ -33,7 +33,7 @@ extension UIView {
         return left + width
     }
     
-    func makeRounded(with radius: CGFloat = 2.0) {
+    func makeRounded(with radius: CGFloat = 5.0) {
         layer.cornerRadius = radius
         clipsToBounds = true
     }

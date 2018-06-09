@@ -44,8 +44,7 @@ class SearchHeaderView : UIView {
     }
     
     func stylize() {
-        headerGradientView.alpha = 0.7
-        headerGradientView.backgroundColor = UIColor.gray
+        headerGradientView.backgroundColor = UIColor.youtubeRed()
     }
     
     @IBAction func searchButtonPressed(_ sender: Any) {

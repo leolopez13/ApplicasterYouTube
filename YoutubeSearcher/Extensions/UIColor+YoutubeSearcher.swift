@@ -29,4 +29,8 @@ extension UIColor {
     static func soapStoneGrey() -> UIColor {
         return UIColor.colorWithHex(hex: "E6E7E8")
     }
+    
+    static func youtubeRed() -> UIColor {
+        return UIColor.colorWithHex(hex: "FB0008")
+    }
 }

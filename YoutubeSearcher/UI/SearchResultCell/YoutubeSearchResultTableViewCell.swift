@@ -24,7 +24,7 @@ class YoutubeSearchResultTableViewCell : UITableViewCell, ClassNameNibLoadable {
     
     var timer: Timer?
     
-    let animationDuration = 0.1
+    let animationDuration = 0.5
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -74,10 +74,15 @@ class YoutubeSearchResultTableViewCell : UITableViewCell, ClassNameNibLoadable {
     }
     
     func setEmptyBackground() {
+        thumbnailImageView.image = nil
         thumbnailImageView.backgroundColor = UIColor.soapStoneGrey()
+        videoTitleLabel.text = nil
         videoTitleLabel.backgroundColor = UIColor.soapStoneGrey()
+        playlistTitleLabel.text = nil
         playlistTitleLabel.backgroundColor = UIColor.soapStoneGrey()
+        videoDurationLabel.text = nil
         videoDurationLabel.backgroundColor = UIColor.soapStoneGrey()
+        publishDateLabel.text = nil
         publishDateLabel.backgroundColor = UIColor.soapStoneGrey()
     }
     
