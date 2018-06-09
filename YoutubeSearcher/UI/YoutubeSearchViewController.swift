@@ -104,7 +104,9 @@ class YoutubeSearchViewController: UIViewController {
                 do {
                     return try YouTubeVideo.buildWithYouTubeVideoResponse(youtubeVideo: $0)
                 }
-                catch {
+                catch let error {
+                    // some debugging information
+                    print("Got error when trying to create YouTubeVideo with Video Response object: \(error.localizedDescription)")
                     return nil
                 }
             }

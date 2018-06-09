@@ -11,6 +11,7 @@ target 'YoutubeSearcher' do
 
   target 'YoutubeSearcherTests' do
     inherit! :search_paths
+    pod 'GoogleAPIClientForREST/YouTube', '~> 1.2.1'
     # Pods for testing
   end
 
