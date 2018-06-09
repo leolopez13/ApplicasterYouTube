@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oWl-6i-EBB">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Youtube Search View Controller-->
+        <scene sceneID="SrS-dV-XTR">
+            <objects>
+                <viewController id="oWl-6i-EBB" customClass="YoutubeSearchViewController" customModule="YoutubeSearcher" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zhm-0f-YWo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t4m-m0-cnV" customClass="SearchHeaderView" customModule="YoutubeSearcher" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="51"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="swI-8C-JIV"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="595-W8-tEK">
+                                <rect key="frame" x="0.0" y="71" width="375" height="596"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <sections/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="595-W8-tEK" firstAttribute="top" secondItem="t4m-m0-cnV" secondAttribute="bottom" id="38W-e3-DfD"/>
+                            <constraint firstItem="t4m-m0-cnV" firstAttribute="top" secondItem="7MN-WE-dWk" secondAttribute="top" id="5GL-T6-Mxp"/>
+                            <constraint firstItem="595-W8-tEK" firstAttribute="bottom" secondItem="7MN-WE-dWk" secondAttribute="bottom" id="8jc-Qe-YLa"/>
+                            <constraint firstItem="595-W8-tEK" firstAttribute="leading" secondItem="7MN-WE-dWk" secondAttribute="leading" id="ANw-eK-MuM"/>
+                            <constraint firstItem="t4m-m0-cnV" firstAttribute="leading" secondItem="7MN-WE-dWk" secondAttribute="leading" id="HYn-bx-FSO"/>
+                            <constraint firstItem="595-W8-tEK" firstAttribute="trailing" secondItem="7MN-WE-dWk" secondAttribute="trailing" id="STD-31-2f8"/>
+                            <constraint firstItem="595-W8-tEK" firstAttribute="top" secondItem="t4m-m0-cnV" secondAttribute="bottom" id="ZCw-p1-iaf"/>
+                            <constraint firstItem="t4m-m0-cnV" firstAttribute="trailing" secondItem="7MN-WE-dWk" secondAttribute="trailing" id="oio-hn-MSS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7MN-WE-dWk"/>
+                    </view>
+                    <connections>
+                        <outlet property="searchHeaderView" destination="t4m-m0-cnV" id="b8I-88-XhV"/>
+                        <outlet property="searchTableView" destination="595-W8-tEK" id="fWm-Na-vEM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pgh-tu-BK0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="176.80000000000001" y="196.55172413793105"/>
+        </scene>
+    </scenes>
+</document>
