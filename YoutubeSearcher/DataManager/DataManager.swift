@@ -7,3 +7,14 @@
 //
 
 import Foundation
+import Reachability
+
+class DataManager: NSObject {
+    
+    let reach = Reachability.forInternetConnection()
+    
+    func hasConnection() -> Bool {
+        return reach?.isReachable() ?? false
+    }
+    
+}
