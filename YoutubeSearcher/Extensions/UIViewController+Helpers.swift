@@ -17,12 +17,24 @@ extension UIViewController {
             message: message,
             preferredStyle: .alert
         )
-        let ok = UIAlertAction(
-            title: "OK",
+        
+        alert.addAction(UIAlertAction.ok())
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func showAlert(title : String, message: String, defaultButtonTitle: String, cancelAction: UIAlertAction, completionHandler: ((UIAlertAction) -> Swift.Void)? = nil) {
+        let alert = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+        let defaultButton = UIAlertAction(
+            title: defaultButtonTitle,
             style: .default,
             handler: nil
         )
-        alert.addAction(ok)
+        alert.addAction(defaultButton)
+        alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
     

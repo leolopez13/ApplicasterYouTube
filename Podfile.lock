@@ -10,16 +10,26 @@ PODS:
   - GTMSessionFetcher/Full (1.1.15):
     - GTMSessionFetcher/Core (= 1.1.15)
   - ImageLoader (0.14.0)
+  - Reachability (3.2)
 
 DEPENDENCIES:
   - GoogleAPIClientForREST/YouTube (~> 1.2.1)
   - ImageLoader
+  - Reachability
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - GoogleAPIClientForREST
+    - GTMSessionFetcher
+    - ImageLoader
+    - Reachability
 
 SPEC CHECKSUMS:
   GoogleAPIClientForREST: a8b95a252014ce2e618df6b75dc72eca2c00b4af
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
   ImageLoader: 56f57e35d6ed26a74183dc2e472133b4b22eb7b9
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
 
-PODFILE CHECKSUM: f31810fab6ffc27ae058756e938e6e0822f2ad08
+PODFILE CHECKSUM: 4b7198417edc28c5b88535e3f3b7936ad05fc309
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

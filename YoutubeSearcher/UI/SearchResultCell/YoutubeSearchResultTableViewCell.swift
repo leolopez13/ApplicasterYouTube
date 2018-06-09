@@ -7,14 +7,13 @@
 //
 
 import UIKit
-import GoogleAPIClientForREST
 import ImageLoader
 
 class YoutubeSearchResultTableViewCell : UITableViewCell, ClassNameNibLoadable {
     
     static let NibName = "YoutubeSearchResultTableViewCell"
     
-    var video: GTLRYouTube_Video?
+    var video: YouTubeVideo?
     
     @IBOutlet var thumbnailImageView: UIImageView!
     @IBOutlet var videoTitleLabel: UILabel!
@@ -97,64 +96,11 @@ class YoutubeSearchResultTableViewCell : UITableViewCell, ClassNameNibLoadable {
     func fillVideoData() {
         guard let video = video else { return }
         
-        if let thumbnailURLString = video.snippet?.thumbnails?.medium?.url,
-            let thumbnailURL = URL(string: thumbnailURLString) {
-            thumbnailImageView.load.request(with: thumbnailURL)
-        }
-        videoTitleLabel.text = video.snippet?.title
-        playlistTitleLabel.text = video.snippet?.channelTitle
-        videoDurationLabel.text = formatDuration(duration: video.contentDetails?.duration)
-        publishDateLabel.text = video.snippet?.publishedAt?.date.dateToStringShort()
-    }
-    
-    func formatDuration(duration: String? = "") -> String {
-        //ISO 8601 duration
-        //PT3H35M30S
-        guard let duration = duration else { return "" }
-        var durationString = duration.replacingOccurrences(of: "PT", with: "")
-        
-        var hours = 0
-        var minutes = 0
-        var seconds = 0
-        
-        var timeParts = durationString.split(separator: "H")
-        if timeParts.count > 1 {
-            if let hoursInt = Int(timeParts[0]) {
-                hours = hoursInt
-            }
-            durationString = durationString.replacingOccurrences(of: "H", with: "")
-        }
-        
-        //if let hoursString = duration.rangeOfComposedCharacterSequences(for: RangeExpression)
-        //    hours = Int(hoursString)
-        
-        // duration is unaltered string so we can test against this one having these values
-        if duration.contains("M") && duration.contains("S") {
-            let minutesAndSeconds = durationString.split(separator: "M")
-            guard let unwrappedMinutes = Int(minutesAndSeconds[0]),
-                let unwrappedSeconds = Int(minutesAndSeconds[1]) else {
-                    return ""
-            }
-            minutes = unwrappedMinutes
-            seconds = unwrappedSeconds
-        }
-        else if duration.contains("M") {
-            guard let unwrappedMinutes = Int(durationString.replacingOccurrences(of: "M", with: "")) else { return "" }
-            minutes = unwrappedMinutes
-        }
-        else if duration.contains("S") {
-            guard let unwrappedSeconds = Int(durationString) else { return "" }
-            seconds = unwrappedSeconds
-        }
-        
-        let displayMinutes = minutes % 60
-        let displayHours = minutes / 60
-        if hours > 0 {
-            return String(format: "%d:%02d:%02d", displayHours, displayMinutes, seconds)
-        }
-        else {
-            return String(format: "%d:%02d", displayMinutes, seconds)
-        }
+        thumbnailImageView.load.request(with: video.thumbnailURL)
+        videoTitleLabel.text = video.title
+        playlistTitleLabel.text = video.playlistTitle
+        videoDurationLabel.text = video.duration
+        publishDateLabel.text = video.publishDate
     }
     
     func startAnimation() {
@@ -169,7 +115,7 @@ class YoutubeSearchResultTableViewCell : UITableViewCell, ClassNameNibLoadable {
         timer.invalidate()
     }
     
-    static func buildWithVideo(video: GTLRYouTube_Video) -> YoutubeSearchResultTableViewCell {
+    static func buildWithVideo(video: YouTubeVideo) -> YoutubeSearchResultTableViewCell {
         let videoResultView = YoutubeSearchResultTableViewCell.loadInstanceFromNib()
         videoResultView.video = video
         videoResultView.stylize()

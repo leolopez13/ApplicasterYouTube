@@ -17,9 +17,11 @@ class VideoPlayerViewController: UIViewController {
     @IBOutlet var loadingView: UIView!
     @IBOutlet var closeButton: UIButton!
     
-    var video: GTLRYouTube_Video? = nil
+    var video: YouTubeVideo? = nil
     
-    static func buildWithVideo(video: GTLRYouTube_Video) -> VideoPlayerViewController {
+    let dataManager = DataManager()
+    
+    static func buildWithVideo(video: YouTubeVideo) -> VideoPlayerViewController {
         let bundle = Bundle(for: VideoPlayerViewController.self)
         let storyboard =  UIStoryboard(name: StoryboardName, bundle: bundle)
         
@@ -33,8 +35,8 @@ class VideoPlayerViewController: UIViewController {
         
         youtubePlayerView.delegate = self
         
-        guard let video = video, let videoId = video.identifier else { return }
-        youtubePlayerView.load(withVideoId: videoId)
+        guard let video = video else { return }
+        youtubePlayerView.load(withVideoId: video.id)
     }
     
     @IBAction func didPressCloseButton(_ sender: Any) {

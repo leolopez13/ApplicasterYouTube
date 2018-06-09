@@ -16,14 +16,19 @@ class YoutubeSearchViewController: UIViewController {
     
     private let apiKey = "AIzaSyDo4JaFczvX_Z5cqdfXwMf7fV7mnKdVLFw"
     private let service = GTLRYouTubeService()
-    private var videoData: [GTLRYouTube_Video] = []
+    private var videoData: [YouTubeVideo] = []
     private var searchQueryString = ""
+    private var closeKeyboardTapRecognizer: UITapGestureRecognizer!
+    
+    private let dataManager = DataManager()
     
     private let numEmptyVideos = 3
     private let numVideos: UInt = 10
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        closeKeyboardTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(searchButtonPressed))
         
         searchHeaderView.searchHeaderDelegate = self
         searchHeaderView.searchTextField.delegate = self
@@ -34,29 +39,31 @@ class YoutubeSearchViewController: UIViewController {
         service.apiKey = apiKey
     }
     
-    func getHideKeyboardGesture() -> UITapGestureRecognizer {
-        return UITapGestureRecognizer(target: self, action: #selector(searchButtonPressed))
-    }
-    
     func addHideKeyboardGesture() {
-        view.addGestureRecognizer(getHideKeyboardGesture())
+        view.addGestureRecognizer(closeKeyboardTapRecognizer)
     }
     
     func removeHideKeyboardGesture() {
-        view.removeGestureRecognizer(getHideKeyboardGesture())
+        view.removeGestureRecognizer(closeKeyboardTapRecognizer)
     }
     
     // Make initial search request with query string from user
     func fetchSearchResource() {
-        animateCells()
-        let query = GTLRYouTubeQuery_SearchList.query(withPart: "snippet")
-        query.maxResults = numVideos
-        query.order = kGTLRYouTubeOrderRating
-        query.q = searchQueryString
         
-        service.executeQuery(query,
-                             delegate: self,
-                             didFinish: #selector(searchResultWithTicket(ticket:finishedWithObject:error:)))
+        if dataManager.hasConnection() {
+            animateCells()
+            let query = GTLRYouTubeQuery_SearchList.query(withPart: "snippet")
+            query.maxResults = numVideos
+            query.order = kGTLRYouTubeOrderRating
+            query.q = searchQueryString
+            
+            service.executeQuery(query,
+                                 delegate: self,
+                                 didFinish: #selector(searchResultWithTicket(ticket:finishedWithObject:error:)))
+        }
+        else {
+            showAlert(title: "No Internet Connection", message: "There appears to be no internet conncetion. Please make sure you have an active internet connection.")
+        }
     }
     
     // Process the response and make the subsequent video call to get more data that we need to display (like contentDetails)
@@ -93,7 +100,14 @@ class YoutubeSearchViewController: UIViewController {
         }
         
         if let videoResults = response.items, !videoResults.isEmpty {
-            videoData = videoResults
+            videoData = videoResults.compactMap {
+                do {
+                    return try YouTubeVideo.buildWithYouTubeVideoResponse(youtubeVideo: $0)
+                }
+                catch {
+                    return nil
+                }
+            }
         }
         searchTableView.reloadData()
     }
@@ -159,15 +173,15 @@ extension YoutubeSearchViewController: UITableViewDelegate {
 extension YoutubeSearchViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        //addHideKeyboardGesture()
+        addHideKeyboardGesture()
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let searchText = textField.text else { return }
-        searchQueryString = searchText
         removeHideKeyboardGesture()
-        // Do not want to make an API call if the query string is empty
-        if !searchQueryString.isEmpty {
+        // Do not want to make an API call if the query string is empty or the same
+        if !searchQueryString.isEmpty || searchQueryString != searchText {
+            searchQueryString = searchText
             fetchSearchResource()
         }
     }
