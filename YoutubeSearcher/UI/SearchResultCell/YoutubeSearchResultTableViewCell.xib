@@ -47,7 +47,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yor-40-yhk">
-                        <rect key="frame" x="199" y="71" width="53" height="14"/>
+                        <rect key="frame" x="193" y="71" width="53" height="14"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="53" id="yHd-6g-oZt"/>
                         </constraints>
@@ -78,7 +78,7 @@
                     <constraint firstItem="VPK-Dl-8Wq" firstAttribute="leading" secondItem="uHe-pa-Coc" secondAttribute="trailing" constant="7.5" id="p8L-eo-Dq0"/>
                     <constraint firstItem="uHe-pa-Coc" firstAttribute="leading" secondItem="Ao2-nz-2X4" secondAttribute="leadingMargin" id="pCx-xh-cPx"/>
                     <constraint firstItem="VPK-Dl-8Wq" firstAttribute="top" secondItem="3yz-tu-HZf" secondAttribute="bottom" priority="750" constant="4" id="vDB-xG-K2W"/>
-                    <constraint firstItem="Yor-40-yhk" firstAttribute="leading" secondItem="JEU-vo-UIN" secondAttribute="trailing" constant="10" id="x3k-hL-fVd"/>
+                    <constraint firstItem="Yor-40-yhk" firstAttribute="leading" secondItem="JEU-vo-UIN" secondAttribute="trailing" constant="4" id="x3k-hL-fVd"/>
                     <constraint firstItem="3yz-tu-HZf" firstAttribute="top" secondItem="Ao2-nz-2X4" secondAttribute="topMargin" id="xsJ-gm-ViI"/>
                 </constraints>
             </tableViewCellContentView>

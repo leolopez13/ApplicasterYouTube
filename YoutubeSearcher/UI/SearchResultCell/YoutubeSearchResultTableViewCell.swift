@@ -108,13 +108,25 @@ class YoutubeSearchResultTableViewCell : UITableViewCell, ClassNameNibLoadable {
     }
     
     func formatDuration(duration: String? = "") -> String {
-        //PT15M51S
+        //ISO 8601 duration
+        //PT3H35M30S
         guard let duration = duration else { return "" }
         var durationString = duration.replacingOccurrences(of: "PT", with: "")
-        durationString = durationString.replacingOccurrences(of: "S", with: "")
         
+        var hours = 0
         var minutes = 0
         var seconds = 0
+        
+        var timeParts = durationString.split(separator: "H")
+        if timeParts.count > 1 {
+            if let hoursInt = Int(timeParts[0]) {
+                hours = hoursInt
+            }
+            durationString = durationString.replacingOccurrences(of: "H", with: "")
+        }
+        
+        //if let hoursString = duration.rangeOfComposedCharacterSequences(for: RangeExpression)
+        //    hours = Int(hoursString)
         
         // duration is unaltered string so we can test against this one having these values
         if duration.contains("M") && duration.contains("S") {
@@ -136,9 +148,9 @@ class YoutubeSearchResultTableViewCell : UITableViewCell, ClassNameNibLoadable {
         }
         
         let displayMinutes = minutes % 60
-        let hours = minutes / 60
+        let displayHours = minutes / 60
         if hours > 0 {
-            return String(format: "%d:%02d:%02d", hours, displayMinutes, seconds)
+            return String(format: "%d:%02d:%02d", displayHours, displayMinutes, seconds)
         }
         else {
             return String(format: "%d:%02d", displayMinutes, seconds)

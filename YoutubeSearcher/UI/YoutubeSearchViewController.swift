@@ -159,7 +159,7 @@ extension YoutubeSearchViewController: UITableViewDelegate {
 extension YoutubeSearchViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        addHideKeyboardGesture()
+        //addHideKeyboardGesture()
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
