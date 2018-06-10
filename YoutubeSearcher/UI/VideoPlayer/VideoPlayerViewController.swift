@@ -40,6 +40,7 @@ class VideoPlayerViewController: UIViewController {
         
         guard let video = video else { return }
         
+        // adding in gif to show while loading
         if let loadingGifURL = URL(string: "https://78.media.tumblr.com/2c34bd9b24641aaf7ae2c8b2847435fc/tumblr_nzwkbcWeYP1qhjjeao1_500.gif") {
             do {
                 let gifURLData = try Data.init(contentsOf: loadingGifURL)
@@ -53,6 +54,7 @@ class VideoPlayerViewController: UIViewController {
             }
         }
         
+        // once view did load, start loading video
         youtubePlayerView.load(withVideoId: video.id)
     }
     
@@ -63,6 +65,7 @@ class VideoPlayerViewController: UIViewController {
 
 extension VideoPlayerViewController : YTPlayerViewDelegate {
     
+    // once the player became ready and loaded the video we want to start playing it right away and remove the loading view
     func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
         loadingView.isHidden = true
         playerView.playVideo()
@@ -71,10 +74,12 @@ extension VideoPlayerViewController : YTPlayerViewDelegate {
     func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
         switch state {
         case .buffering:
+            // show loading view while buffering video
             loadingView.isHidden = false
             break
         case .unstarted,
             .playing:
+            // remove loading view while unstarted or playing
             loadingView.isHidden = true
             break
         case .ended:
