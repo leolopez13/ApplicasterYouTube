@@ -47,6 +47,7 @@ class VideoPlayerViewController: UIViewController {
                 let animatedImage = FLAnimatedImage.init(animatedGIFData: gifURLData)
                 let animatedImageView = FLAnimatedImageView.init(frame: CGRect.init(x: 0, y: 0, width: loadingViewLoadingImageContainerView.width, height: loadingViewLoadingImageContainerView.height))
                 animatedImageView.animatedImage = animatedImage
+                animatedImageView.contentMode = .scaleAspectFill
                 loadingViewLoadingImageContainerView.addSubview(animatedImageView)
             }
             catch let error {
