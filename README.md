@@ -37,6 +37,12 @@ When opening in Xcode, make sure to open, and use, YoutubeSearcher.xcworkspace a
 
 Should be able to press build and run (Command+R) to load and install the app on the simulator and run
 
+## Screenshots 
+
+[Ghoul States](https://github.com/leolopez13/ApplicasterYouTube/youtubeSearchGhoulStates.png) - Ghoul states
+[Content Loaded](https://github.com/leolopez13/ApplicasterYouTube/youtubeSearchWithVideos.png) - Search results populated
+[Video Playing](https://github.com/leolopez13/ApplicasterYouTube/youtubeSearchVideoPlaying.png) - Youtube player playing video
+
 ## Running the tests
 
 The tests can be ran within the Xcode Workspace by pressing Command+U or navigating to the Project Menu -> Test
