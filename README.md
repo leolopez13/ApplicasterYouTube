@@ -39,7 +39,7 @@ Should be able to press build and run (Command+R) to load and install the app on
 
 ## Screenshots 
 
-* [Ghoul States](https://raw.githubusercontent.com/leolopez13/ApplicasterYouTube/master/youtubeSearchGhoulStates.png) - Ghoul states
+* [Ghoul States](https://raw.githubusercontent.com/leolopez13/ApplicasterYouTube/master/youtubeSearchGhoulStates.png) - Ghoul states when first loading the app
 * [Content Loaded](https://raw.githubusercontent.com/leolopez13/ApplicasterYouTube/master/youtubeSearchWithVideos.png) - Search results populated
 * [Video Playing](https://raw.githubusercontent.com/leolopez13/ApplicasterYouTube/master/youtubeSearchVideoPlaying.png) - Youtube player playing video
 
