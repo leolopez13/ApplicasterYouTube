@@ -34,7 +34,7 @@ git clone https://github.com/leolopez13/ApplicasterYouTube.git
 Open Project
 
 ```
-When opening in Xcode, make sure to open, and use, YoutubeSearcher.xcworkspace and not YoutubeSearcher.xcproject due to cocoapods
+When opening in Xcode, make sure to open, and use, YoutubeSearcher.xcworkspace and not YoutubeSearcher.xcodeproj due to cocoapods
 ```
 
 Should be able to press build and run (Command+R) to load and install the app on the simulator and run
