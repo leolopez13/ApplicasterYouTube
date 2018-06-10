@@ -11,15 +11,16 @@ import UIKit
 extension UILabel {
     
     func setDefaultFont(of size: CGFloat = 12) {
+        setDefaultTextColor()
         self.font = UIFont.defaultFont(of: size)
     }
     
     func setRegularFont(of size: CGFloat = 12) {
+        setDefaultTextColor()
         self.font = UIFont.regularFont(of: size)
     }
     
-    func makeHeaderLabel() {
-        self.textColor = UIColor.gray
-        self.setDefaultFont(of: 15)
+    func setDefaultTextColor() {
+        self.textColor = UIColor.almostBlack()
     }
 }

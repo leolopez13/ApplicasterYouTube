@@ -37,4 +37,13 @@ extension UIView {
         layer.cornerRadius = radius
         clipsToBounds = true
     }
+    
+    func addDropShadow() {
+        layer.shadowColor = UIColor.almostBlack().cgColor
+        layer.shadowOffset = CGSize.init(width: 0, height: 1)
+        layer.shadowRadius = 1.0
+        layer.shadowOpacity = 0.4
+        layer.masksToBounds = false
+        clipsToBounds = false
+    }
 }

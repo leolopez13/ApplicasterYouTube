@@ -38,4 +38,8 @@ extension UIColor {
     static func youtubeRed() -> UIColor {
         return UIColor.colorWithHex(hex: "FB0008")
     }
+    
+    static func almostBlack() -> UIColor {
+        return UIColor.colorWithHex(hex: "232323")
+    }
 }

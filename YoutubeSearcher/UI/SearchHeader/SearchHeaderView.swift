@@ -45,6 +45,9 @@ class SearchHeaderView : UIView {
     
     func stylize() {
         headerGradientView.backgroundColor = UIColor.youtubeRed()
+        
+        // adding dropshadow to header view
+        addDropShadow()
     }
     
     @IBAction func searchButtonPressed(_ sender: Any) {
