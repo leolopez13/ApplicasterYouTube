@@ -58,9 +58,36 @@ class YoutubeSearchViewController: UIViewController {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
+    // start animation on all visible cells
+    func animateCells() {
+        for cell in searchTableView.visibleCells {
+            if let videoCell = cell as? YoutubeSearchResultTableViewCell {
+                videoCell.setEmptyBackground()
+                videoCell.startAnimation()
+            }
+        }
+    }
+    
+    // stop animation on all visible cells
+    func stopAnimateCells() {
+        for cell in searchTableView.visibleCells {
+            if let videoCell = cell as? YoutubeSearchResultTableViewCell {
+                videoCell.endAnimation()
+            }
+        }
+    }
+    
+    func showEmptyResultSet() {
+        showAlert(title: "No Results", message: "Sorry, youtube couldn't find any videos with your search \(searchQueryString).")
+    }
+}
+
+// MARK: Youtube API calls
+
+extension YoutubeSearchViewController {
+    
     // Make initial search request with query string from user
     func fetchSearchResource() {
-        
         // Need to make sure we have a connection before we search
         if dataManager.hasConnection() {
             // show loading and activity
@@ -80,10 +107,6 @@ class YoutubeSearchViewController: UIViewController {
         else {
             showAlert(title: "No Internet Connection", message: "There appears to be no internet conncetion. Please make sure you have an active internet connection.")
         }
-    }
-    
-    func showEmptyResultSet() {
-        showAlert(title: "No Results", message: "Sorry, youtube couldn't find any videos with your search \(searchQueryString).")
     }
     
     // Process the response and make the subsequent video call to get more data that we need to display (like contentDetails)
@@ -123,8 +146,8 @@ class YoutubeSearchViewController: UIViewController {
     
     // Process the response, set videoData and reload the table with our results
     @objc func videoResultWithTicket(ticket: GTLRServiceTicket,
-        finishedWithObject response : GTLRYouTube_VideoListResponse,
-        error : NSError?) {
+                                     finishedWithObject response : GTLRYouTube_VideoListResponse,
+                                     error : NSError?) {
         
         // handle and show error if we got one from the initial search
         if let error = error {
@@ -149,7 +172,7 @@ class YoutubeSearchViewController: UIViewController {
                 }
             }
         }
-        // only way we'd get here is if the video list query did not return any items, should never happen but let's account for it
+            // only way we'd get here is if the video list query did not return any items, should never happen but let's account for it
         else if let videoResults = response.items, videoResults.isEmpty {
             showEmptyResultSet()
         }
@@ -158,24 +181,6 @@ class YoutubeSearchViewController: UIViewController {
         searchTableView.reloadData()
     }
     
-    // start animation on all visible cells
-    func animateCells() {
-        for cell in searchTableView.visibleCells {
-            if let videoCell = cell as? YoutubeSearchResultTableViewCell {
-                videoCell.setEmptyBackground()
-                videoCell.startAnimation()
-            }
-        }
-    }
-    
-    // stop animation on all visible cells
-    func stopAnimateCells() {
-        for cell in searchTableView.visibleCells {
-            if let videoCell = cell as? YoutubeSearchResultTableViewCell {
-                videoCell.endAnimation()
-            }
-        }
-    }
 }
 
 // MARK: UITableViewDataSource methods
