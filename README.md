@@ -10,10 +10,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install the software and how to install them
 
-```
 * [Xcode](https://developer.apple.com/download/more/?&name=Xcode) - Xcode 9.3+
 * [Cocoapods](https://guides.cocoapods.org/using/getting-started.html) - can be installed on a Mac by running `sudo gem install cocoapods` in terminal
-```
 
 ### Installing
 
