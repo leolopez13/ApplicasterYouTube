@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UOc-rc-NfQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UOc-rc-NfQ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,13 +23,13 @@
                                 <rect key="frame" x="0.0" y="70" width="375" height="597"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GfW-4S-VJr">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GfW-4S-VJr">
                                 <rect key="frame" x="325" y="10" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="cPY-Nu-Olh"/>
                                     <constraint firstAttribute="width" constant="40" id="yQg-5m-nFB"/>
                                 </constraints>
-                                <state key="normal" title="X">
+                                <state key="normal" image="close_x">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -38,17 +39,31 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OKQ-dn-TQc">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DyK-P9-vjX">
+                                        <rect key="frame" x="20" y="179.5" width="335" height="188"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="DyK-P9-vjX" secondAttribute="height" multiplier="16:9" id="bzV-9g-r4P"/>
+                                        </constraints>
+                                    </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xov-Sw-QAS">
-                                        <rect key="frame" x="150" y="313" width="75" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="150" y="420.5" width="75" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="75" id="B3w-xu-qaY"/>
+                                            <constraint firstAttribute="height" constant="21" id="b2q-aw-w43"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="xov-Sw-QAS" firstAttribute="centerY" secondItem="OKQ-dn-TQc" secondAttribute="centerY" id="aQk-Ge-ieo"/>
-                                    <constraint firstItem="xov-Sw-QAS" firstAttribute="centerX" secondItem="OKQ-dn-TQc" secondAttribute="centerX" id="pjj-Yr-kHN"/>
+                                    <constraint firstItem="DyK-P9-vjX" firstAttribute="leading" secondItem="OKQ-dn-TQc" secondAttribute="leading" constant="20" id="LfI-gU-SBP"/>
+                                    <constraint firstItem="DyK-P9-vjX" firstAttribute="centerY" secondItem="OKQ-dn-TQc" secondAttribute="centerY" constant="-50" id="SSD-Ob-bFV"/>
+                                    <constraint firstItem="xov-Sw-QAS" firstAttribute="centerX" secondItem="OKQ-dn-TQc" secondAttribute="centerX" id="Yga-oP-8cE"/>
+                                    <constraint firstAttribute="trailing" secondItem="DyK-P9-vjX" secondAttribute="trailing" constant="20" id="nMr-CF-mLX"/>
+                                    <constraint firstItem="xov-Sw-QAS" firstAttribute="top" secondItem="DyK-P9-vjX" secondAttribute="bottom" constant="52.5" id="tBA-lP-DVQ"/>
+                                    <constraint firstItem="DyK-P9-vjX" firstAttribute="centerX" secondItem="OKQ-dn-TQc" secondAttribute="centerX" id="yS0-ek-Grg"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -70,6 +85,7 @@
                     <connections>
                         <outlet property="closeButton" destination="GfW-4S-VJr" id="lfK-XM-TzL"/>
                         <outlet property="loadingView" destination="OKQ-dn-TQc" id="ccJ-Or-rDe"/>
+                        <outlet property="loadingViewLoadingImageContainerView" destination="DyK-P9-vjX" id="yIM-bZ-PN7"/>
                         <outlet property="youtubePlayerView" destination="xvs-T3-AWg" id="q9c-22-kBM"/>
                     </connections>
                 </viewController>
@@ -78,4 +94,7 @@
             <point key="canvasLocation" x="20" y="111.99400299850076"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="close_x" width="16" height="16"/>
+    </resources>
 </document>

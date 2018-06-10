@@ -6,6 +6,7 @@ target 'YoutubeSearcher' do
   # Pods for YoutubeSearcher
   pod 'ImageLoader'
   pod 'Reachability'
+  pod 'FLAnimatedImage', '~> 1.0'
   #pod "youtube-ios-player-helper", "~> 0.1.4"
   pod 'GoogleAPIClientForREST/YouTube', '~> 1.2.1'
 

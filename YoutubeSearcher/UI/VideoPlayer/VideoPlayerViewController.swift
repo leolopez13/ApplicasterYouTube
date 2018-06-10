@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleAPIClientForREST
+import FLAnimatedImage
 
 class VideoPlayerViewController: UIViewController {
     
@@ -16,6 +17,7 @@ class VideoPlayerViewController: UIViewController {
     @IBOutlet var youtubePlayerView: YTPlayerView!
     @IBOutlet var loadingView: UIView!
     @IBOutlet var closeButton: UIButton!
+    @IBOutlet var loadingViewLoadingImageContainerView: UIView!
     
     var video: YouTubeVideo? = nil
     
@@ -26,6 +28,7 @@ class VideoPlayerViewController: UIViewController {
         let storyboard =  UIStoryboard(name: StoryboardName, bundle: bundle)
         
         let controller = storyboard.instantiateInitialViewController() as! VideoPlayerViewController
+        
         controller.video = video
         return controller
     }
@@ -36,6 +39,20 @@ class VideoPlayerViewController: UIViewController {
         youtubePlayerView.delegate = self
         
         guard let video = video else { return }
+        
+        if let loadingGifURL = URL(string: "https://78.media.tumblr.com/2c34bd9b24641aaf7ae2c8b2847435fc/tumblr_nzwkbcWeYP1qhjjeao1_500.gif") {
+            do {
+                let gifURLData = try Data.init(contentsOf: loadingGifURL)
+                let animatedImage = FLAnimatedImage.init(animatedGIFData: gifURLData)
+                let animatedImageView = FLAnimatedImageView.init(frame: CGRect.init(x: 0, y: 0, width: loadingViewLoadingImageContainerView.width, height: loadingViewLoadingImageContainerView.height))
+                animatedImageView.animatedImage = animatedImage
+                loadingViewLoadingImageContainerView.addSubview(animatedImageView)
+            }
+            catch let error {
+                print("Got error: \(error.localizedDescription) - while trying to get data from contents of loading fig url")
+            }
+        }
+        
         youtubePlayerView.load(withVideoId: video.id)
     }
     

@@ -13,6 +13,7 @@ extension String {
     func formatISO8601Duration() -> String {
         //ISO 8601 duration
         //ex: PT3H35M30S
+        // want to get rid of the PT so we can scan through the string and pick apart the hours, minutes, and seconds
         let durationString = self.replacingOccurrences(of: "PT", with: "")
         
         var hours = 0
@@ -21,9 +22,11 @@ extension String {
         
         var timeString = ""
         for character in durationString {
+            // build up timeString with numbers
             if Int("\(character)") != nil {
                 timeString += "\(character)"
             }
+            // found a character, has to be H, M, or S. set corresponding value based on the character
             else {
                 if character == "H" {
                     if let hoursInt = Int(timeString) {
@@ -40,6 +43,7 @@ extension String {
                         seconds = secondsInt
                     }
                 }
+                // set timeString back to 0 since we picked out the value and so we can do it for the next time interval
                 timeString = ""
             }
         }
