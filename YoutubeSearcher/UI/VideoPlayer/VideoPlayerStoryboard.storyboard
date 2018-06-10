@@ -46,7 +46,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xov-Sw-QAS">
-                                        <rect key="frame" x="150" y="420.5" width="75" height="21"/>
+                                        <rect key="frame" x="150" y="420" width="75" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="75" id="B3w-xu-qaY"/>
                                             <constraint firstAttribute="height" constant="21" id="b2q-aw-w43"/>
@@ -58,11 +58,23 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="DyK-P9-vjX" firstAttribute="leading" secondItem="OKQ-dn-TQc" secondAttribute="leading" constant="20" id="LfI-gU-SBP"/>
-                                    <constraint firstItem="DyK-P9-vjX" firstAttribute="centerY" secondItem="OKQ-dn-TQc" secondAttribute="centerY" constant="-50" id="SSD-Ob-bFV"/>
+                                    <constraint firstItem="DyK-P9-vjX" firstAttribute="leading" secondItem="OKQ-dn-TQc" secondAttribute="leading" constant="20" id="LfI-gU-SBP">
+                                        <variation key="heightClass=compact-widthClass=compact" constant="100"/>
+                                        <variation key="heightClass=compact-widthClass=regular" constant="100"/>
+                                    </constraint>
+                                    <constraint firstItem="DyK-P9-vjX" firstAttribute="centerY" secondItem="OKQ-dn-TQc" secondAttribute="centerY" constant="-50" id="SSD-Ob-bFV">
+                                        <variation key="heightClass=compact-widthClass=compact" constant="-20"/>
+                                        <variation key="heightClass=compact-widthClass=regular" constant="-20"/>
+                                    </constraint>
                                     <constraint firstItem="xov-Sw-QAS" firstAttribute="centerX" secondItem="OKQ-dn-TQc" secondAttribute="centerX" id="Yga-oP-8cE"/>
-                                    <constraint firstAttribute="trailing" secondItem="DyK-P9-vjX" secondAttribute="trailing" constant="20" id="nMr-CF-mLX"/>
-                                    <constraint firstItem="xov-Sw-QAS" firstAttribute="top" secondItem="DyK-P9-vjX" secondAttribute="bottom" constant="52.5" id="tBA-lP-DVQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="DyK-P9-vjX" secondAttribute="trailing" constant="20" id="nMr-CF-mLX">
+                                        <variation key="heightClass=compact-widthClass=compact" constant="100"/>
+                                        <variation key="heightClass=compact-widthClass=regular" constant="100"/>
+                                    </constraint>
+                                    <constraint firstItem="xov-Sw-QAS" firstAttribute="top" secondItem="DyK-P9-vjX" secondAttribute="bottom" constant="52.5" id="tBA-lP-DVQ">
+                                        <variation key="heightClass=compact-widthClass=compact" constant="20"/>
+                                        <variation key="heightClass=compact-widthClass=regular" constant="15"/>
+                                    </constraint>
                                     <constraint firstItem="DyK-P9-vjX" firstAttribute="centerX" secondItem="OKQ-dn-TQc" secondAttribute="centerX" id="yS0-ek-Grg"/>
                                 </constraints>
                             </view>
