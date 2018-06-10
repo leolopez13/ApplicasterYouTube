@@ -104,6 +104,7 @@ class YoutubeSearchResultTableViewCell : UITableViewCell, ClassNameNibLoadable {
     }
     
     func startAnimation() {
+        // start a timer that repeats until it will be invalidated to load the animation
         timer = Timer.init(fireAt: Date(), interval: animationDuration * 2, target: self, selector: #selector(animateToGrey), userInfo: nil, repeats: true)
         guard let timer = timer else { return }
         removeEmptyBackground()
@@ -116,18 +117,18 @@ class YoutubeSearchResultTableViewCell : UITableViewCell, ClassNameNibLoadable {
     }
     
     static func buildWithVideo(video: YouTubeVideo) -> YoutubeSearchResultTableViewCell {
-        let videoResultView = YoutubeSearchResultTableViewCell.loadInstanceFromNib()
-        videoResultView.video = video
-        videoResultView.stylize()
-        videoResultView.removeEmptyBackground()
-        videoResultView.fillVideoData()
-        return videoResultView
+        let videoResultViewCell = YoutubeSearchResultTableViewCell.loadInstanceFromNib()
+        videoResultViewCell.video = video
+        videoResultViewCell.stylize()
+        videoResultViewCell.removeEmptyBackground()
+        videoResultViewCell.fillVideoData()
+        return videoResultViewCell
     }
     
     static func buildEmpty() -> YoutubeSearchResultTableViewCell {
-        let videoResultView = YoutubeSearchResultTableViewCell.loadInstanceFromNib()
-        videoResultView.stylize()
-        videoResultView.setEmptyBackground()
-        return videoResultView
+        let videoResultViewCell = YoutubeSearchResultTableViewCell.loadInstanceFromNib()
+        videoResultViewCell.stylize()
+        videoResultViewCell.setEmptyBackground()
+        return videoResultViewCell
     }
 }

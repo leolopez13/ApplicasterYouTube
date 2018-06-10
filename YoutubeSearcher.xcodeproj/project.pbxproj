@@ -10,6 +10,7 @@
 		011A79B620CC392000FEC1D2 /* UIAlertAction+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011A79B520CC392000FEC1D2 /* UIAlertAction+Helpers.swift */; };
 		011A79B820CC3CBE00FEC1D2 /* YouTubeVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011A79B720CC3CBE00FEC1D2 /* YouTubeVideo.swift */; };
 		011A79BA20CC428100FEC1D2 /* String+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011A79B920CC428100FEC1D2 /* String+Formatting.swift */; };
+		01BD69BF20CD894000315799 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BD69BE20CD894000315799 /* Constants.swift */; };
 		1F275BC320CAD91200E89F7F /* YoutubeSearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F275BC220CAD91200E89F7F /* YoutubeSearchResultTableViewCell.swift */; };
 		1F275BC620CAD93900E89F7F /* YoutubeSearchResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F275BC520CAD93900E89F7F /* YoutubeSearchResultTableViewCell.xib */; };
 		1F275BC820CADE2B00E89F7F /* ClassNameNibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F275BC720CADE2B00E89F7F /* ClassNameNibLoadable.swift */; };
@@ -64,6 +65,7 @@
 		011A79B520CC392000FEC1D2 /* UIAlertAction+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertAction+Helpers.swift"; sourceTree = "<group>"; };
 		011A79B720CC3CBE00FEC1D2 /* YouTubeVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeVideo.swift; sourceTree = "<group>"; };
 		011A79B920CC428100FEC1D2 /* String+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Formatting.swift"; sourceTree = "<group>"; };
+		01BD69BE20CD894000315799 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		075D811F28EF0FD37942DE7D /* Pods-YoutubeSearcher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YoutubeSearcher.release.xcconfig"; path = "Pods/Target Support Files/Pods-YoutubeSearcher/Pods-YoutubeSearcher.release.xcconfig"; sourceTree = "<group>"; };
 		1F275BC220CAD91200E89F7F /* YoutubeSearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeSearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		1F275BC520CAD93900E89F7F /* YoutubeSearchResultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YoutubeSearchResultTableViewCell.xib; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				1F275BE520CB31F200E89F7F /* YoutubeSearcher-Bridging-Header.h */,
+				01BD69BE20CD894000315799 /* Constants.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-YoutubeSearcher/Pods-YoutubeSearcher-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
 				"${BUILT_PRODUCTS_DIR}/ImageLoader/ImageLoader.framework",
@@ -551,6 +555,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImageLoader.framework",
@@ -585,6 +590,7 @@
 				1FFF825F20CA1A6400375C5C /* SearchHeaderView.swift in Sources */,
 				1F7D861F20C9F1F7007B5B20 /* YoutubeSearchViewController.swift in Sources */,
 				1F275BDA20CB286500E89F7F /* UIViewController+Helpers.swift in Sources */,
+				01BD69BF20CD894000315799 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
