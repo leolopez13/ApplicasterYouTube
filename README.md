@@ -56,6 +56,8 @@ testBuildWithYouTubeVideo() - tests the object is instantiated correctly with an
 testISOFormattingWithHours() - tests the formatting of the string returned by the GTLRYouTube_Video which is in ISO8601 format
 testISOFormattingWithMinutes() - tests the formatting of the string returned by the GTLRYouTube_Video which is in ISO8601 format
 testISOFormattingWithSeconds() - tests the formatting of the string returned by the GTLRYouTube_Video which is in ISO8601 format
+testSearching() - UI test - Want to test that we can query the Youtube API with a search term
+testPlayVideo() - UI test - Want to test that we can still query the Youtube API with a search term and then play a video from that result in the youtube player
 ```
 
 ## Deployment

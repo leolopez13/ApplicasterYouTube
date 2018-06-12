@@ -28,9 +28,56 @@ class YoutubeSearcherUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    // want to test that we can query the Youtube API with a search term
+    func testSearching() {
+        let app = XCUIApplication()
+        let searchField = app.searchFields["Search youtube videos"]
+        // want to make sure this matches the number of empty views that we should have
+        XCTAssertEqual(app.tables.staticTexts.matching(identifier: "Search Result").count, 3, "Check the amount of empty video cells is 3")
+        searchField.tap()
+        // type search query text
+        searchField.typeText("funny cats")
+        // make request to youtube
+        app.buttons["Search Button"].tap()
+        // wait for response
+        let searchResults = app.tables.staticTexts.matching(identifier: "Search Result")
+        let countPredicate = NSPredicate(format: "count == 10")
+        expectation(for: countPredicate, evaluatedWith: searchResults, handler: nil)
+        waitForExpectations(timeout: 3, handler: nil)
+        // want to make sure this matches the number of video result views that we should have
+        XCTAssertEqual(app.tables.staticTexts.matching(identifier: "Search Result").count, 10, "Check the amount of loaded video cells is 10 after making request")
     }
     
+    // want to test that we can still query the Youtube API with a search term and then play a video from that result in the youtube player
+    func testPlayVideo() {
+        let app = XCUIApplication()
+        let searchField = app.searchFields["Search youtube videos"]
+        searchField.tap()
+        // type search query text
+        searchField.typeText("funny cats")
+        // make request to youtube
+        app.buttons["Search Button"].tap()
+        // wait for response
+        let searchResults = app.tables.staticTexts.matching(identifier: "Search Result")
+        let countPredicate = NSPredicate(format: "count == 10")
+        expectation(for: countPredicate, evaluatedWith: searchResults, handler: nil)
+        waitForExpectations(timeout: 3, handler: nil)
+        
+        // tap first video once we get results
+        searchResults.firstMatch.tap()
+        
+        let loadingVideo = app.staticTexts["Video Loading View"]
+        //let youtubeVideoPlayerView = app.staticTexts["Youtube Video Player"]
+        let youtubeVideoPlayerView = app.otherElements.matching(identifier: "Youtube Video Player").firstMatch
+        let existsPredicate = NSPredicate(format: "exists == 1")
+        
+        expectation(for: existsPredicate, evaluatedWith: loadingVideo, handler: nil)
+        waitForExpectations(timeout: 5, handler: nil)
+        
+        // if we have a loading view, we should have a youtube player video view also
+        XCTAssert(app.staticTexts["Video Loading View"].exists, "Want to make sure video loading screen is showing when the view shows")
+        expectation(for: existsPredicate, evaluatedWith: youtubeVideoPlayerView, handler: nil)
+        waitForExpectations(timeout: 5, handler: nil)
+        XCTAssert(youtubeVideoPlayerView.exists, "Want to make sure youtube video player is also available to load when the video starts")
+    }
 }

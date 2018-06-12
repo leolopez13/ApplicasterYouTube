@@ -87,6 +87,10 @@
                     <constraint firstItem="3yz-tu-HZf" firstAttribute="top" secondItem="Ao2-nz-2X4" secondAttribute="topMargin" id="xsJ-gm-ViI"/>
                 </constraints>
             </tableViewCellContentView>
+            <accessibility key="accessibilityConfiguration" hint="Search Result View" identifier="Search Result" label="Search Result">
+                <accessibilityTraits key="traits" staticText="YES" startsMediaSession="YES"/>
+                <bool key="isElement" value="YES"/>
+            </accessibility>
             <connections>
                 <outlet property="playlistTitleLabel" destination="VPK-Dl-8Wq" id="Mxv-5b-fLZ"/>
                 <outlet property="publishDateLabel" destination="Yor-40-yhk" id="Zd0-Le-W0S"/>

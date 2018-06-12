@@ -29,6 +29,7 @@ class YoutubeSearchViewController: UIViewController {
         
         // want to set UITapGestureRecognizer to a private variable so we can add/remove the same one as needed
         closeKeyboardTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(searchButtonPressed))
+        closeKeyboardTapRecognizer.isAccessibilityElement = false
         
         // need to set the delegate for the header to see if the search button was pressed
         searchHeaderView.searchHeaderDelegate = self
